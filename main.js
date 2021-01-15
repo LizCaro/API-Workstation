@@ -1,14 +1,14 @@
-import Request from './classes/request.js';
+import request from './classes/request.js';
 import UI from './classes/UI.js';
 
 const form = document.querySelector('#form-questions');//
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    Request.getQuestions()
+    request.getQuestions()
       .then(response => response.json())
       .then(data => UI.printQuestions(data.results))
 });
-Request.getCategories()
+request.getCategories()
   .then(response => response.json())
   .then(data => UI.printCategories(data.trivia_categories))
