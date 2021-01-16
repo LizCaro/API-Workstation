@@ -21,10 +21,40 @@ export default class UI {
     static printAnswers(answers){
         const container = document.getElementById('answer-container');
         container.innerHTML = '';
-        answers.forEach((answer) => {
-            container.innerHTML += `<div class="col-md-12 mt-4">
-                                       ${answer.answer}
-                                    </div>`
-        });
+
+    
+        let answersAll = []
+        answers.forEach((element) => {
+
+            const answerChoices = [...element.incorrect_answers]
+            
+            answerChoices.splice(Math.floor(Math.random() * 4) - 1, 0, element.correct_answer)
+            answersAll.push(answerChoices)
+
+            
+        })
+        for (let i = 0; i < answersAll.length; i++) {
+
+                container.innerHTML += `<div class="card-body">
+                                            <div>
+                                                <input type="radio" id="c" name="${answersAll[i]}">
+                                                <label id="c_text" for="c">${answersAll[i][0]}</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="c" name="${answersAll[i]}">
+                                                <label id="c_text" for="c">${answersAll[i][1]}</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="c" name="${answersAll[i]}">
+                                                <label id="c_text" for="c">${answersAll[i][2]}</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="c" name="${answersAll[i]}">
+                                                <label id="c_text" for="c">${answersAll[i][3]}</label>
+                                            </div>
+                                        </div>`
+        } 
+        console.log(answersAll)
+       
     }
 }
