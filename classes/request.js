@@ -13,6 +13,4 @@ export default class request {
         const type = document.getElementById('type').value;
         return [totalQuestions, category, difficulty,type];
     }
-    
-
 }

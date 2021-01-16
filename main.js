@@ -9,13 +9,10 @@ const form = document.querySelector('#form-questions');//
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     request.getQuestions()
-
       .then(response => response.json())
       .then(data => {
         UI.printQuestions(data.results)
-        UI.printAnswers(data.results)
       })
-      
 });
 request.getCategories()
   .then(response => response.json())
