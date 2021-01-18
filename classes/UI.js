@@ -45,4 +45,10 @@ export default class UI {
         })
         //console.log(quesitonsAll)
     }
+    /*static printResults(answers){
+        const container = document.getElementById('question-container');
+        answers.forEach(element => {
+            container.innerHTML += `<p>${element.selectedAnswers}</p>`
+        });
+    }*/
 }
