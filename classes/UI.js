@@ -6,21 +6,21 @@ export default class UI {
         });
     }
     static printQuestions(answers){
-        const questionItem =document.getElementById('question-item')
-        const a_text =document.getElementById('a_text')
-        const b_text =document.getElementById('b_text')
-        const c_text =document.getElementById('c_text')
-        const d_text =document.getElementById('d_text')
+        const questionItem =document.getElementById('question-item');
+        const a_text =document.getElementById('a_text');
+        const b_text =document.getElementById('b_text');
+        const c_text =document.getElementById('c_text');
+        const d_text =document.getElementById('d_text');
         const nextQuestions = document.getElementById('next-questions');
-
+       
         let quesitonsAll = []
 
         answers.forEach((element) => {
-            const questionsCoices = element.question
+            const questionsChoices = element.question
             const answerChoices = [...element.incorrect_answers]
             
             answerChoices.splice(Math.floor(Math.random() * 4) - 1, 0, element.correct_answer)
-            quesitonsAll.push(questionsCoices)
+            quesitonsAll.push(questionsChoices)
             quesitonsAll.push(answerChoices)
 
         })
@@ -33,6 +33,7 @@ export default class UI {
             d_text.innerText = quesitonsAll[1][3]
         } 
         let currentQuestion = 0;
+
         nextQuestions.addEventListener('click', () => {
             currentQuestion++
 
@@ -40,9 +41,8 @@ export default class UI {
             a_text.innerText = quesitonsAll[currentQuestion+ 1][0]
             b_text.innerText = quesitonsAll[currentQuestion+ 1][1]
             c_text.innerText = quesitonsAll[currentQuestion+ 1][2]
-            d_text.innerText = quesitonsAll[currentQuestion+ 1][3]
-            
+            d_text.innerText = quesitonsAll[currentQuestion+ 1][3]   
         })
-        console.log(quesitonsAll)
+        //console.log(quesitonsAll)
     }
 }
