@@ -16,9 +16,9 @@ form.addEventListener('submit', (event) => {
 finishForm.addEventListener('click', () => {
   results.countAnswers()
     //.then(response => response.json())
-    .then(data => {
-      UI.printResults(data)
-    })
+    // .then(data => {
+    //   UI.printResults(data)
+    // })
      
 });
 request.getCategories()

@@ -26,11 +26,11 @@ export default class UI {
         })
         
         for (let i = 0; i < quesitonsAll.length; i++) {
-            questionItem.innerText = quesitonsAll[0]
-            a_text.innerText = quesitonsAll[1][0]
-            b_text.innerText = quesitonsAll[1][1]
-            c_text.innerText = quesitonsAll[1][2]
-            d_text.innerText = quesitonsAll[1][3]
+            questionItem.innerHTML = quesitonsAll[0]
+            a_text.innerHTML = quesitonsAll[1][0]
+            b_text.innerHTML = quesitonsAll[1][1]
+            c_text.innerHTML = quesitonsAll[1][2]
+            d_text.innerHTML = quesitonsAll[1][3]
         } 
         let currentQuestion = 0;
 
@@ -45,10 +45,10 @@ export default class UI {
         })
         //console.log(quesitonsAll)
     }
-    /*static printResults(answers){
+    static printResults(answers){
         const container = document.getElementById('question-container');
         answers.forEach(element => {
             container.innerHTML += `<p>${element.selectedAnswers}</p>`
         });
-    }*/
+    }
 }

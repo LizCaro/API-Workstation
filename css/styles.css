@@ -1,0 +1,48 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+
+*{
+  font-family: 'Chewy', cursive;
+}
+body{
+    font-family:"ballons";
+    background: rgb(239,221,8);
+    background: linear-gradient(357deg, rgba(239,221,8,1) 35%, rgba(1,198,33,1) 97%, rgba(83,229,13,0.9644071862143295) 100%);
+    min-height:500px ;
+    background-size:cover;
+    background-position: center;    
+}
+
+img{
+    width:500px; 
+    
+}
+.card {
+    background-color: rgba(78, 151, 78, 0.166);
+    color: white
+}
+
+.card-body{
+    font-size: 2rem;
+    border-radius: 5px;
+    background-color: rgba(78, 151, 78, 0)
+}
+.easy{
+background-color: yellow;
+}
+.medium {
+    background-color: orange;
+}
+.hard {
+    background-color: red;
+}
+.form-control {
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+}
+#difficulty:active {
+ background-color: rgb(32, 86, 133);
+}
+.btn-danger {
+    border-radius: 90%;
+}
