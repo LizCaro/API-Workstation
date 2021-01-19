@@ -12,16 +12,22 @@ export default class UI {
         const c_text =document.getElementById('c_text');
         const d_text =document.getElementById('d_text');
         const nextQuestions = document.getElementById('next-questions');
-        
+        const finishQuestions = document.getElementById('finish-questions');
+        const results = document.getElementById('results');
+        const totalQuestions = document.getElementById('total-questions').value;
         
 
         let quesitonsAll = []
+        let correct = []
 
         answers.forEach((element) => {
             const questionsChoices = element.question
             const answerChoices = [...element.incorrect_answers]
+            const corrected = element.correct_answer
             
             answerChoices.splice(Math.floor(Math.random() * 4) - 1, 0, element.correct_answer)
+
+            correct.push(corrected)
             quesitonsAll.push(questionsChoices)
             quesitonsAll.push(answerChoices)
 
@@ -35,7 +41,7 @@ export default class UI {
                 d_text.innerText = quesitonsAll[1][3]   
         } 
 
-
+        let points = 0
         let selectedAnswers = []
         let currentQuestion = 0;
         let contNumNext = 1;
@@ -58,10 +64,11 @@ export default class UI {
                 
                 }
             }
-            const totalQuestions = document.getElementById('total-questions').value;
+            
 
             if (contNumNext === totalQuestions - 1) {
-                nextQuestions.innerText = 'Finish'
+                nextQuestions.style.display = 'none'
+                finishQuestions.style.display = 'inline-flex'
             }
 
             questionItem.innerText = quesitonsAll[currentQuestion++ + 1];    
@@ -73,13 +80,22 @@ export default class UI {
                 d_text.innerText = quesitonsAll[currentQuestion+ 1][3]
 
                 contNumNext++
-            } else {
-                alert('finish')
-            }
+            } 
             
             
         })
         console.log(selectedAnswers)
         console.log(quesitonsAll)
+        finishQuestions.addEventListener('click', () => {
+
+            for (let i = 0; i < selectedAnswers.length; i++) {
+                for (let j = 0; j < correct.length; j++) {
+                    if (selectedAnswers[i] === correct[j]) {
+                        points += 1
+                    }
+                }
+            }
+            results.innerHTML = `Sacastes ${points} preguntas correctas de ${totalQuestions}`
+        })
     }
 }

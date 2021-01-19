@@ -46,3 +46,6 @@ background-color: yellow;
 .btn-danger {
     border-radius: 90%;
 }
+#finish-questions {
+    display: none;
+}
