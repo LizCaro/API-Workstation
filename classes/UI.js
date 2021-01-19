@@ -12,7 +12,9 @@ export default class UI {
         const c_text =document.getElementById('c_text');
         const d_text =document.getElementById('d_text');
         const nextQuestions = document.getElementById('next-questions');
-       
+        
+        
+
         let quesitonsAll = []
 
         answers.forEach((element) => {
@@ -26,29 +28,58 @@ export default class UI {
         })
         
         for (let i = 0; i < quesitonsAll.length; i++) {
-            questionItem.innerHTML = quesitonsAll[0]
-            a_text.innerHTML = quesitonsAll[1][0]
-            b_text.innerHTML = quesitonsAll[1][1]
-            c_text.innerHTML = quesitonsAll[1][2]
-            d_text.innerHTML = quesitonsAll[1][3]
+                questionItem.innerText = quesitonsAll[0]
+                a_text.innerText = quesitonsAll[1][0]
+                b_text.innerText = quesitonsAll[1][1]
+                c_text.innerText = quesitonsAll[1][2]
+                d_text.innerText = quesitonsAll[1][3]   
         } 
-        let currentQuestion = 0;
 
+
+        let selectedAnswers = []
+        let currentQuestion = 0;
+        let contNumNext = 1;
         nextQuestions.addEventListener('click', () => {
             currentQuestion++
+            const rbs = document.querySelectorAll('input[name="answer"]')
+            let selecetValue;
 
-            questionItem.innerText = quesitonsAll[currentQuestion++ + 1];      
-            a_text.innerText = quesitonsAll[currentQuestion+ 1][0]
-            b_text.innerText = quesitonsAll[currentQuestion+ 1][1]
-            c_text.innerText = quesitonsAll[currentQuestion+ 1][2]
-            d_text.innerText = quesitonsAll[currentQuestion+ 1][3]   
+            
+            for (const rb of rbs) {
+                if(rb.checked) {
+                document.getElementById('a').setAttribute('value', a_text.innerText)
+                document.getElementById('b').setAttribute('value', b_text.innerText)
+                document.getElementById('c').setAttribute('value', c_text.innerText)
+                document.getElementById('d').setAttribute('value', d_text.innerText)
+                selecetValue = rb.value
+                selectedAnswers.push(selecetValue)
+                console.log(selectedAnswers)
+                // rb.checked = false;
+                
+                }
+            }
+            const totalQuestions = document.getElementById('total-questions').value;
+
+            if (contNumNext === totalQuestions - 1) {
+                nextQuestions.innerText = 'Finish'
+            }
+
+            questionItem.innerText = quesitonsAll[currentQuestion++ + 1];    
+            
+            if (a_text.innerText = quesitonsAll[currentQuestion+ 1]) {
+                a_text.innerText = quesitonsAll[currentQuestion+ 1][0]
+                b_text.innerText = quesitonsAll[currentQuestion+ 1][1]
+                c_text.innerText = quesitonsAll[currentQuestion+ 1][2]
+                d_text.innerText = quesitonsAll[currentQuestion+ 1][3]
+
+                contNumNext++
+            } else {
+                alert('finish')
+            }
+            
+            
         })
-        //console.log(quesitonsAll)
-    }
-    static printResults(answers){
-        const container = document.getElementById('question-container');
-        answers.forEach(element => {
-            container.innerHTML += `<p>${element.selectedAnswers}</p>`
-        });
+        console.log(selectedAnswers)
+        console.log(quesitonsAll)
     }
 }
