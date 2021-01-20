@@ -15,30 +15,40 @@ export default class UI {
         const finishQuestions = document.getElementById('finish-questions');
         const results = document.getElementById('results');
         const totalQuestions = document.getElementById('total-questions').value;
+        const showScore = document.getElementById('results');
         
-
+        const showQuestion = document.getElementById('question-container');
+        const showButtons = document.getElementById('buttonsBlock');
+        const messageInit = document.getElementById('initial-message');
+        const start = document.querySelector("#start");
+        start.addEventListener("click", () => {
+            showQuestion.style.display = 'inline-block'
+            showButtons.style.display = 'inline-block'
+            messageInit.style.display = 'none'
+        }) 
+    
         let quesitonsAll = []
         let correct = []
 
-        answers.forEach((element) => {
-            const questionsChoices = element.question
-            const answerChoices = [...element.incorrect_answers]
-            const corrected = element.correct_answer
-            
-            answerChoices.splice(Math.floor(Math.random() * 4) - 1, 0, element.correct_answer)
-
-            correct.push(corrected)
-            quesitonsAll.push(questionsChoices)
-            quesitonsAll.push(answerChoices)
-
-        })
+            answers.forEach((element) => {
+                const questionsChoices = element.question
+                const answerChoices = [...element.incorrect_answers]
+                const corrected = element.correct_answer
+                
+                answerChoices.splice(Math.floor(Math.random() * 4) - 1, 0, element.correct_answer)
+    
+                correct.push(corrected)
+                quesitonsAll.push(questionsChoices)
+                quesitonsAll.push(answerChoices)
+    
+            })
         
         for (let i = 0; i < quesitonsAll.length; i++) {
-                questionItem.innerText = quesitonsAll[0]
-                a_text.innerText = quesitonsAll[1][0]
-                b_text.innerText = quesitonsAll[1][1]
-                c_text.innerText = quesitonsAll[1][2]
-                d_text.innerText = quesitonsAll[1][3]   
+                questionItem.innerHTML = quesitonsAll[0]
+                a_text.innerHTML = quesitonsAll[1][0]
+                b_text.innerHTML = quesitonsAll[1][1]
+                c_text.innerHTML = quesitonsAll[1][2]
+                d_text.innerHTML = quesitonsAll[1][3]   
         } 
 
         let points = 0
@@ -59,25 +69,23 @@ export default class UI {
                 document.getElementById('d').setAttribute('value', d_text.innerText)
                 selecetValue = rb.value
                 selectedAnswers.push(selecetValue)
-                console.log(selectedAnswers)
+                //console.log(selectedAnswers)
                 // rb.checked = false;
-                
                 }
             }
             
-
             if (contNumNext === totalQuestions - 1) {
                 nextQuestions.style.display = 'none'
                 finishQuestions.style.display = 'inline-flex'
             }
 
-            questionItem.innerText = quesitonsAll[currentQuestion++ + 1];    
+            questionItem.innerHTML = quesitonsAll[currentQuestion++ + 1];    
             
-            if (a_text.innerText = quesitonsAll[currentQuestion+ 1]) {
-                a_text.innerText = quesitonsAll[currentQuestion+ 1][0]
-                b_text.innerText = quesitonsAll[currentQuestion+ 1][1]
-                c_text.innerText = quesitonsAll[currentQuestion+ 1][2]
-                d_text.innerText = quesitonsAll[currentQuestion+ 1][3]
+            if (a_text.innerHTML = quesitonsAll[currentQuestion+ 1]) {
+                a_text.innerHTML = quesitonsAll[currentQuestion+ 1][0]
+                b_text.innerHTML = quesitonsAll[currentQuestion+ 1][1]
+                c_text.innerHTML = quesitonsAll[currentQuestion+ 1][2]
+                d_text.innerHTML = quesitonsAll[currentQuestion+ 1][3]
 
                 contNumNext++
             } 
@@ -86,8 +94,10 @@ export default class UI {
         })
         console.log(selectedAnswers)
         console.log(quesitonsAll)
+        
         finishQuestions.addEventListener('click', () => {
 
+            let score=0;
             for (let i = 0; i < selectedAnswers.length; i++) {
                 for (let j = 0; j < correct.length; j++) {
                     if (selectedAnswers[i] === correct[j]) {
@@ -95,7 +105,12 @@ export default class UI {
                     }
                 }
             }
-            results.innerHTML = `Sacastes ${points} preguntas correctas de ${totalQuestions}`
+            score = score + (points*100)/selectedAnswers.length;
+
+            showScore.style.display = 'inline-block'
+            showQuestion.style.display = 'none'
+            showButtons.style.display = 'none'
+            results.innerHTML = `You get ${points} correct answers of ${totalQuestions} and you score is ${score} %`
         })
     }
 }

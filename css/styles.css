@@ -25,7 +25,13 @@ img{
 .card-body{
     font-size: 2rem;
     border-radius: 5px;
-    background-color: rgba(78, 151, 78, 0)
+    background-color: rgba(78, 151, 78, 0);
+}
+#question-container{
+    display:none;
+}
+#buttonsBlock{
+    display: none;
 }
 .easy{
 background-color: yellow;
@@ -48,4 +54,7 @@ background-color: yellow;
 }
 #finish-questions {
     display: none;
+}
+#results{
+    display:none;
 }
